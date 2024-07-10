@@ -1,0 +1,51 @@
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Pacifico&display=swap');
+
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+    .border2 {
+        @apply  border border-primaryColor py-2 px-4 text-primaryColor font-bold rounded-full hover:bg-primaryColor hover:text-white active:scale-90 transition-all
+    }
+
+    .border1 {
+        @apply  py-2 px-4 bg-primaryColor transition-all text-white rounded-full border border-transparent font-bold hover:bg-inherit hover:border hover:border-primaryColor hover:text-primaryColor active:scale-90
+    }
+
+    .linkStyle {
+        @apply text-textColor font-semibold hover:text-secondaryColor transition-all
+    }
+
+    .myFlex {
+        @apply flex justify-between items-center
+    }
+    .forms{
+        @apply flex flex-col gap-8 items-center border h-3/4 w-1/4 p-6 shadow-xl rounded-badge
+    }
+    .formsRegister{
+        @apply flex flex-col gap-8 items-center border h-3/4 w-1/3 p-6 shadow-xl rounded-badge
+    }
+}
+
+@layer base {
+    .Mycontainer {
+        @apply container max-w-[1100px] mx-auto my-0 px-8;
+    }
+}
+@layer utilities {
+    .bg-login-bg {
+      background-image: url('../img/loginpage.svg');
+    }
+  }
+
+body {
+    font-family: 'Open', sans-serif;
+}
+.Background{
+    background:url(./img/loginpage.svg);
+    background-repeat: no-repeat;
+    opacity: 1;
+}

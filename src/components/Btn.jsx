@@ -1,9 +1,11 @@
-import React from 'react'
+import React from 'react';
 
-function Btn({text, style, type, registerWithGoogle}) {
+function Btn({ text, style, type = "button", onClick }) {
   return (
-    <button onClick={registerWithGoogle} type={type} className={`border2 ${style}`}>{text}</button>
-  )
+    <button className={`border2 ${style}`} type={type} onClick={onClick}>
+      {text}
+    </button>
+  );
 }
 
-export default Btn
+export default Btn;

@@ -6,21 +6,21 @@ import { useEffect } from 'react';
 
 export const action = async ({request})=>{
   let formData = await request.formData();
-  let name = formData.get('displayName')
+  let dispalyName = formData.get('displayName')
   let lastName = formData.get('lastname')
   let email = formData.get('email')
   let password = formData.get('password')
-  return {name, lastName, email, password}
+  return {dispalyName, lastName, email, password}
 
 }
 // custom hook
 import { useRegistration } from '../hooks/useRegistration';
 
 function Register() {
-  const {registerWithGoogle, ispending} = useRegistration()
+  const {registerWithGoogle, ispending, registerWithEmailAndPassword} = useRegistration()
   const userData = useActionData();
   useEffect(()=>{
-    {userData && console.log(userData)}
+    {userData && registerWithEmailAndPassword(userData.dispalyName, userData.email, userData.password)}
   },[userData])
   return (
     <div className={`grid grid-cols-1 min-h-screen w-full place-items-center Background`}>
@@ -44,7 +44,7 @@ function Register() {
           <div class="border-t border-black flex-grow ml-3 w-6"></div>
         </div>
         <div className='w-full flex justify-between items-center gap-1'>
-         <Btn  registerWithGoogle={registerWithGoogle} type={'button'} text={` Google` } style={'rounded-md'}/>
+         <Btn  onClick={registerWithGoogle} type={'button'} text={` Google` } style={'rounded-md'}/>
           <Btn type={'button'} text={'Facebook'} style={'rounded-md'}/>
           <Btn type={'button'} text={'GitHub'} style={'rounded-md'}/>
         </div>

@@ -6,4 +6,6 @@ function Smartfon() {
   )
 }
 
+
+
 export default Smartfon

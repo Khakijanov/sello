@@ -6,4 +6,5 @@ function Butoon1({text, path} ) {
   )
 }
 
+
 export default Butoon1

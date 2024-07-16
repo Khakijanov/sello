@@ -1,9 +1,6 @@
 
 import './App.css'
 // react Hooks 
-import { useContext } from 'react'
-// context Api
-import { MyContext } from './context/GlobalContext'
 
 // react-router-dom
 import { createBrowserRouter, Navigate, RouterProvider } from 'react-router-dom'
@@ -15,18 +12,33 @@ import Smartfon from './pages/Smartfon'
 import ErrorPage from './pages/ErrorPage'
 import Login from './pages/Login'
 import Register from './pages/Register'
+import SingleProductDetailes from './pages/SingleProductDetailes'
+import Todo from './pages/Todo'
+import Cart from './pages/Cart'
 // component
 import ProtectRouter from './components/ProtectRouter'
 // action
 import { action as registerAction } from './pages/Register'
 import {action as loginAction} from './pages/Login'
+import { action as actionTodo } from './pages/Todo'
+//context
+import { useMyContext } from './hooks/useMyContext'
+import { useEffect } from 'react'
+// firebase
+import { onAuthStateChanged } from 'firebase/auth'
+import { auth } from './firebase/Firebase'
+// loader
+import { loader } from './pages/Home'
+import { loader as singleProductLoader } from './pages/SingleProductDetailes'
 
 
 
 
 
 function App() {
-  const user = false
+  const {user, dispatch, isAuthReady} = useMyContext()
+ 
+ 
  
 
   const routes = createBrowserRouter([
@@ -39,7 +51,8 @@ function App() {
       children:[
         {
           index:true,
-          element:<Home/>
+          element:<Home/>,
+          loader:loader
         },
         {
           path:'/smartfon',
@@ -49,7 +62,22 @@ function App() {
           path:'/smartfon/:id',
           element:<Smartfon/>
         },
-        
+        {
+          path:'/singleProductDetailes/:id',
+          element:<SingleProductDetailes/>,
+          loader:singleProductLoader
+        },
+        {
+          path:'/todo',
+          element:<Todo/>,
+          action: actionTodo,
+          
+        },
+        {
+          path:'/cart',
+          element:<Cart/>,
+
+        }
       ]
     },
     {
@@ -67,11 +95,17 @@ function App() {
 
     }
   ])
+  useEffect(()=>{
+    onAuthStateChanged(auth,(user)=>{
+     dispatch({type:'LOG_IN',payload:user})
+     dispatch({type:"IS_AUTH_READY"})
+    })
+  },[])
 
   
 
   return (
-   <RouterProvider router={routes}/>
+   <>{isAuthReady && <RouterProvider router={routes}/>}</>
   )
 }
 

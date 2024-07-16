@@ -49,3 +49,39 @@ body {
     background-repeat: no-repeat;
     opacity: 1;
 }
+/* .bacgroundUl{
+    background: url(./img/mobile-note-list-concept-illustration.png);
+    background-repeat: no-repeat;
+  background-size: contain;
+
+} */
+/* Change the white to any color */
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active{
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: black;
+    transition: background-color 5000s ease-in-out 0s;
+    box-shadow: inset 0 0 20px 20px transparent;
+}
+/*Change text in autofill textbox*/
+input:-webkit-autofill{
+    -webkit-text-fill-color: black !important;
+}
+.counter-input {
+    width: 64px;
+    text-align: center;
+    font-size: 1.25rem;
+    font-weight: 600;
+    border: 1px solid #D1D5DB;
+    border-radius: 4px;
+    -moz-appearance: textfield;
+  }
+  
+  .counter-input::-webkit-outer-spin-button,
+  .counter-input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  

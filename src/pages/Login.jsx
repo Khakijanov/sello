@@ -1,9 +1,17 @@
-import FormInput from '../components/FormInput'
+// react-router-dom
 import { Form, Link, useActionData } from 'react-router-dom'
+// componet
 import Button2 from '../components/Button2'
 import Btn from '../components/Btn'
+import FormInput from '../components/FormInput'
+// react
 import { useEffect, useContext } from 'react'
+// context
 import { MyContext } from '../context/GlobalContext'
+// custom hook
+import { useRegistration } from '../hooks/useRegistration'
+import {useLogin} from '../hooks/useLogin'
+
 
  export const action = async ({request})=>{
  let formData = await request.formData();
@@ -14,11 +22,17 @@ import { MyContext } from '../context/GlobalContext'
 
 
 function Login() {
-  const {isAuthReady, dispatch} = useContext(MyContext);
-    {console.log(isAuthReady)}
+  
+  
+  const {registerWithGoogle, ispending} = useRegistration()
+  const {signIn} = useLogin()
+
+
   const userData = useActionData();
   useEffect(()=>{
-   console.log(userData)
+   if(userData){
+    signIn(userData.email, userData.password)
+   }
   }, [userData])
   return (
     <div className={`grid grid-cols-1 min-h-screen w-full place-items-center Background`}>
@@ -36,7 +50,7 @@ function Login() {
           <div class="border-t border-black flex-grow ml-3 w-6"></div>
         </div>
         <div className='w-full flex justify-between items-center gap-1'>
-         <Btn type={'button'} text={` Google` } style={'rounded-md'}/>
+         <Btn onClick={registerWithGoogle} type={'button'} text={` Google` } style={'rounded-md'}/>
           <Btn type={'button'} text={'Facebook'} style={'rounded-md'}/>
           <Btn type={'button'} text={'GitHub'} style={'rounded-md'}/>
         </div>

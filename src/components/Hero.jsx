@@ -1,8 +1,8 @@
 import HeroImg from '../img/hero.svg'
 function Hero() {
   return (
-    <div className=''>
-        <div className='myontainer myFlex '>
+    <div className='Mycontainer'>
+        <div className=' myFlex '>
             <div className='w-1/2'>
                 <h1 className='text-[70px] text-secondaryColor font-pacifico'>Sale</h1>
                 <h2 className='text-[35px] text-textColor'> Publick high gum natural</h2>
